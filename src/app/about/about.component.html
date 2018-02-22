@@ -21,16 +21,16 @@
     		Commentaires
   		</div>
   		<div class="card-block">
-  			<form #commentForm (ngSubmit)="onAddComment(commentForm.value)">
+  			<form #commentForm="ngForm" (ngSubmit)="onAddComment(commentForm.value)">
 	  			<div class="form-group">
 	  				<label class="control-label">Message :</label>
-	  				<input type="text" name="message" ngModel [(ngModel)]="inputComment.message">
-	  				<button class="btn btn-primary" [disabled]="!inputComment.message">Add comment</button>
+	  				<input required="" type="text" name="message" ngModel [(ngModel)]="inputComment.message">
+	  				<button type="submit" [disabled]="!commentForm.valid" class="btn btn-primary">Add comment</button>
 				</div>
 			</form>
   		</div>
   		<div class="card-block">
-    		<div>
+    		<div>	
     			<blockquote class="card-blockquote">
     				<ul class="list-group">
 						<li class="list-group-item" *ngFor="let c of comments">
