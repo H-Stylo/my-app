@@ -1,0 +1,45 @@
+<div class="container">
+	<div class="card">
+		<div class="card-header">
+    		Informations
+  		</div>
+  		<div class="card-block">
+    		<blockquote class="card-blockquote">
+    			<ul class="list-group">
+				  	<li class="list-group-item">Name : {{info.name}}</li>
+				  	<li class="list-group-item">Age : {{info.age}}</li>
+				  	<li class="list-group-item">Email : {{info.email}}</li>
+				</ul>
+    		</blockquote>
+  		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="card">
+		<div class="card-header">
+    		Commentaires
+  		</div>
+  		<div class="card-block">
+  			<form #commentForm (ngSubmit)="onAddComment(commentForm.value)">
+	  			<div class="form-group">
+	  				<label class="control-label">Message :</label>
+	  				<input type="text" name="message" ngModel [(ngModel)]="inputComment.message">
+	  				<button class="btn btn-primary" [disabled]="!inputComment.message">Add comment</button>
+				</div>
+			</form>
+  		</div>
+  		<div class="card-block">
+    		<div>
+    			<blockquote class="card-blockquote">
+    				<ul class="list-group">
+						<li class="list-group-item" *ngFor="let c of comments">
+							{{c.message}}
+							<span class="badge">{{c.date|date:'dd/mm/yyyy'}}</span>
+						</li>
+					</ul>
+				</blockquote>
+			</div>
+  		</div>
+	</div>
+</div>
