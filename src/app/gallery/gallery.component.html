@@ -1,0 +1,42 @@
+<h1>Gallery</h1>
+
+<div class="container">
+	<div class="card">
+		<div class="card-header">
+    		Pictures searcher
+  		</div>
+  		<div class="card-block">
+  			<p></p>
+    		<blockquote class="card-blockquote">
+    			<form #searchPicturesForm="ngForm" (ngSubmit)="onSearchPictures(searchPicturesForm.value)">
+		  			<div class="form-group">
+		  				<label class="control-label"> Pictures theme :</label>
+		  				<input required="" type="text" name="theme" ngModel [(ngModel)]="inputSearch">
+		  				<button type="submit" [disabled]="!searchPicturesForm.valid" class="btn btn-primary">Search</button>
+					</div>
+				</form>
+    		</blockquote>
+  		</div>
+	</div>
+
+	<p></p>
+
+	<div class="row align-items-center">
+		<div *ngFor="let img of pagePictures?.hits; let i = index" class="col-md-4">
+			<div class="card" style="width: 20rem;">
+	  		<img class="card-img-top" src="{{img.previewURL}}" alt="Not found">
+	  		<div class="card-block">
+	    		<h4 class="card-title">{{img.tags}}</h4>
+	    		<p class="card-text">Autor : <strong>{{img.user}}</strong></p>
+	    		<img class="rounded-circle float-right" src="{{img.userImageURL}}" width=50 height=50 alt="Not found">
+	  		</div>
+		</div>
+	</div>
+
+	<ul class="pagination">
+		<li *ngFor="let page of pages; let i = index" [ngClass]="{'active':currentPage==(i+1)}" class="page-item">
+			<a (click)="onGoToPage(i+1)" class="page-link">{{i+1}}</a>
+		</li>
+	</ul>
+
+</div>
